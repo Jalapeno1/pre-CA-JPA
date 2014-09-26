@@ -39,7 +39,7 @@ public class Control
         PersonEntity pe2 = em.find(PersonEntity.class, p2.getId());
         System.out.println(pe1.getfName());                
         System.out.println(pe2.getfName()); 
-        pfdb.deletePerson(pe1.getId());
+        //pfdb.deletePerson(pe1.getId());
         
         
         

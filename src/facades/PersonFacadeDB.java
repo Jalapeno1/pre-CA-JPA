@@ -19,7 +19,7 @@ import model.Person;
 public class PersonFacadeDB implements IPersonFacade
 {
 
-    Map<Integer, Person> persons = new HashMap();
+    Map<Integer, PersonEntity> persons = new HashMap();
     private int nextId;
     private final Gson gson = new Gson();
     private static PersonFacadeDB instance = new PersonFacadeDB();
@@ -28,14 +28,15 @@ public class PersonFacadeDB implements IPersonFacade
     {
     }
 
-    public void createTestData() {
-    addPerson(gson.toJson(new PersonEntity("Dann","Mark","1234")));
-    addPerson(gson.toJson(new PersonEntity("Danny","Boy","2345")));
-    addPerson(gson.toJson(new PersonEntity("Neojan","ahdlsahjfhdsjf","3456")));
-    addPerson(gson.toJson(new PersonEntity("Ronald","McDonald","4567")));
-    addPerson(gson.toJson(new PersonEntity("Jonas","Petersen","5678")));
+    public void createTestData()
+    {
+        addPerson(gson.toJson(new PersonEntity("Dann", "Mark", "1234")));
+        addPerson(gson.toJson(new PersonEntity("Danny", "Boy", "2345")));
+        addPerson(gson.toJson(new PersonEntity("Neojan", "Tahaha", "3456")));
+        addPerson(gson.toJson(new PersonEntity("Ronald", "McDonald", "4567")));
+        addPerson(gson.toJson(new PersonEntity("Jonas", "Petersen", "5678")));
     }
-    
+
     /*
      Pass in true to create a new instance. Usefull for testing.
      */
@@ -49,9 +50,9 @@ public class PersonFacadeDB implements IPersonFacade
     }
 
     @Override
-    public Person addPerson(String json)
+    public PersonEntity addPerson(String json)
     {
-        Person p = gson.fromJson(json, Person.class);
+        PersonEntity p = gson.fromJson(json, PersonEntity.class);
         p.setId(nextId);
         persons.put(nextId, p);
         nextId++;
@@ -59,9 +60,9 @@ public class PersonFacadeDB implements IPersonFacade
     }
 
     @Override
-    public Person deletePerson(int id) throws NotFoundException
+    public PersonEntity deletePerson(int id) throws NotFoundException
     {
-        Person p = persons.remove(id);
+        PersonEntity p = persons.remove(id);
         if (p == null)
         {
             throw new NotFoundException("No person exists for the given id");
@@ -72,7 +73,7 @@ public class PersonFacadeDB implements IPersonFacade
     @Override
     public String getPerson(int id) throws NotFoundException
     {
-        Person p = persons.get(id);
+        PersonEntity p = persons.get(id);
         if (p == null)
         {
             throw new NotFoundException("No person exists for the given id");
@@ -91,10 +92,10 @@ public class PersonFacadeDB implements IPersonFacade
     }
 
     @Override
-    public Person editPerson(String json) throws NotFoundException
+    public PersonEntity editPerson(String json) throws NotFoundException
     {
-        Person p = gson.fromJson(json, Person.class);
-        Person oldValue = persons.get(p.getId());
+        PersonEntity p = gson.fromJson(json, PersonEntity.class);
+        PersonEntity oldValue = persons.get(p.getId());
         if (oldValue == null)
         {
             throw new NotFoundException("No person exists for the given id");

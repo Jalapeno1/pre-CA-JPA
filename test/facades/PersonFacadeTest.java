@@ -1,6 +1,7 @@
 package facades;
 
 import com.google.gson.Gson;
+import entity.PersonEntity;
 import exceptions.NotFoundException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class PersonFacadeTest {
 
-  PersonFacade facade;
+  PersonFacadeDB facade;
   Gson gson = new Gson();
 
   public PersonFacadeTest() {
@@ -20,12 +21,12 @@ public class PersonFacadeTest {
   @Before
   public void x() {
     //true will create a new facade instance for each test case
-    facade = PersonFacade.getFacade(true);
+    facade = PersonFacadeDB.getFacade(true);
   }
 
   @Test
   public void testAddPerson() throws NotFoundException {
-    Person person = facade.addPerson(gson.toJson(new Person("bbb", "bbb", "bbb")));
+    PersonEntity person = facade.addPerson(gson.toJson(new PersonEntity("bbb", "bbb", "bbb")));
     String expectedJsonString = gson.toJson(person);
     String actual = facade.getPerson(person.getId());
     assertEquals(expectedJsonString, actual);
@@ -38,13 +39,13 @@ public class PersonFacadeTest {
   
     @Test
   public void testGetPersons() {
-    Person p = new Person("aaa", "aaa", "aaa");
-    Person person1 = facade.addPerson(gson.toJson(p));
-    Person p2 = new Person("bbb", "bbb", "bbb");
-    Person person2 = facade.addPerson(gson.toJson(p2));
+    PersonEntity p = new PersonEntity("aaa", "aaa", "aaa");
+    PersonEntity person1 = facade.addPerson(gson.toJson(p));
+    PersonEntity p2 = new PersonEntity("bbb", "bbb", "bbb");
+    PersonEntity person2 = facade.addPerson(gson.toJson(p2));
     
     //Make the Expected String
-    Map<Integer,Person> test = new HashMap();
+    Map<Integer,PersonEntity> test = new HashMap();
     test.put(person1.getId(),person1);
     test.put(person2.getId(),person2);
     String expected = gson.toJson(test.values());
@@ -55,7 +56,7 @@ public class PersonFacadeTest {
 
   @Test(expected = NotFoundException.class)
   public void testDeletePerson() throws NotFoundException {
-    Person person = facade.addPerson(gson.toJson(new Person("bbb", "bbb", "bbb")));
+    PersonEntity person = facade.addPerson(gson.toJson(new PersonEntity("bbb", "bbb", "bbb")));
     facade.deletePerson(person.getId());
     facade.getPerson(person.getId());
   
@@ -66,11 +67,9 @@ public class PersonFacadeTest {
     facade.getPerson(5);
   }
 
-
-
   @Test()
   public void testEditPerson() throws NotFoundException{
-    Person person = facade.addPerson(gson.toJson(new Person("aaa", "bbb", "ccc")));
+    PersonEntity person = facade.addPerson(gson.toJson(new PersonEntity("aaa", "bbb", "ccc")));
     String original = gson.toJson(person);
     String changed = original.replace("aaa", "abc");
     String oldValue = gson.toJson(facade.editPerson(changed));
