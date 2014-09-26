@@ -65,13 +65,12 @@ public class PersonFacade implements IPersonFacade {
   @Override
   public String getPerson(int id) throws NotFoundException {
     Person p = persons.get(id);
+      System.out.println("DANIEL ER GUD");
     if(p==null){
       throw new NotFoundException("No person exists for the given id");
     }
     return gson.toJson(p);
   }
-
- 
 
   @Override
   public String getPersons() {
