@@ -5,7 +5,6 @@ import entity.PersonEntity;
 import exceptions.NotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import model.Person;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

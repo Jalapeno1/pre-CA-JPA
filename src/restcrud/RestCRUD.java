@@ -32,7 +32,7 @@ public class RestCRUD
     static String startFile = "index.html";
     static String filesUri = "/pages";
     private static final boolean DEVELOPMENT_MODE = true;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("preCAMapping");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("RestCRUDPU");
     EntityManager em = emf.createEntityManager();
 
     public void run() throws IOException

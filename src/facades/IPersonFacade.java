@@ -2,7 +2,6 @@ package facades;
 
 import entity.PersonEntity;
 import exceptions.NotFoundException;
-import model.Person;
 
 /**
  * @author Lars
