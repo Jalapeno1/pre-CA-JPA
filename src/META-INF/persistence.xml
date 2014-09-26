@@ -13,6 +13,7 @@
   </persistence-unit>-->
   <persistence-unit name="RestCRUDPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entity.PersonEntity</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@datdb.cphbusiness.dk:1521:dat"/>
       <property name="javax.persistence.jdbc.password" value="cphjp154"/>

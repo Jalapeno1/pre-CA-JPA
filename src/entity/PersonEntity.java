@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
  *
  * @author Jonas
  */
+
 @Entity
 public class PersonEntity implements Serializable
 {
@@ -74,8 +75,5 @@ public class PersonEntity implements Serializable
     @Override
     public String toString() {
       return "Person{" + "fName=" + fName + ", lName=" + lName + ", phone=" + phone + ", id=" + id + '}';
-    }
-
-    
-    
+    }    
 }
