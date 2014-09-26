@@ -24,17 +24,17 @@ public class PersonEntity implements Serializable
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "s1")
     @SequenceGenerator(name = "s1", sequenceName = "PERS_SEQ",
                 initialValue = 200000, allocationSize = 1)
-    private Long id;
+    private int id;
 
     String fName;
     String lName;
     String phone;
 
-    public long getId() {
+    public int getId() {
       return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
       this.id = id;
     }
 

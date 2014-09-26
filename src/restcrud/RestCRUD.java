@@ -6,7 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import exceptions.NotFoundException;
-import facades.PersonFacade;
+import facades.PersonFacadeDB;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +22,7 @@ import model.Person;
  */
 public class RestCRUD {
 
-  static int port = 8080;
+  static int port = 8181;
   static String ip = "127.0.0.1";
   static String publicFolder = "src/htmlFiles/";
   static String startFile = "index.html";
@@ -51,10 +51,10 @@ public class RestCRUD {
 
   class HandlerPerson implements HttpHandler {
 
-    PersonFacade facade;
+    PersonFacadeDB facade;
 
     public HandlerPerson() {
-      facade = PersonFacade.getFacade(false);
+      facade = PersonFacadeDB.getFacade(false);
       if (DEVELOPMENT_MODE) {
         facade.createTestData();
       }
